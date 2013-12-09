@@ -12,9 +12,11 @@ import java.util.Set;
 public class WebpageReader implements Webpage {
 
 	private Set<String> urls;
+	private Set<String> emails;
 
 	public WebpageReader(String url) {
 		urls = new HashSet<String>();
+		emails = new HashSet<String>();
 		UrlReader(url);
 		
 
@@ -34,8 +36,7 @@ public class WebpageReader implements Webpage {
 
 	@Override
 	public Set<String> getEmails() {
-		// TODO Auto-generated method stub
-		return null;
+		return emails;
 	}
 
 
@@ -43,11 +44,13 @@ public class WebpageReader implements Webpage {
 		try {
 			URL urlAddress = new URL(url);
 			InputStream urlStream = urlAddress.openStream();
-			BufferedReader in = new BufferedReader(new InputStreamReader(urlStream));
+			InputStreamReader reader = new InputStreamReader(urlStream);
+			BufferedReader in = new BufferedReader(reader);
 
 			String inputLine;
 			while ((inputLine = in.readLine()) != null)
-				webLink(inputLine, url);
+//				link(inputLine, url);
+				email(inputLine);
 			in.close();
 
 		} catch (MalformedURLException e) {
@@ -57,10 +60,8 @@ public class WebpageReader implements Webpage {
 		}
 	}
 
-	private void webLink(String line, String hostUrl) {
-		
+	private void link(String line, String hostUrl) {		
 //		System.out.println(line);
-
 		String aTag = "<a href=\"";
 		String aTagend = "\"";
 
@@ -78,12 +79,23 @@ public class WebpageReader implements Webpage {
 				urls.add(url);
 			}
 
-
 		}
+	}
+	
+	
+	private void email(String line) {
+		System.out.println(line);
+		String at = "@";
+		String name = "";
+		String domain = "";
 		
-
-
-
+		if(line.contains(at)) {
+			int atIndex = line.indexOf(at);
+//			name = line.s
+			
+			
+		} // end line if statement
+		
 	}
 
 }
