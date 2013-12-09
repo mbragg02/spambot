@@ -91,7 +91,7 @@ public class WebpageReader implements Webpage {
 		
 		if(line.contains(at)) {
 			int atIndex = line.indexOf(at);
-//			name = line.s
+//			name = line.index
 			
 			
 		} // end line if statement
