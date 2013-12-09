@@ -78,7 +78,7 @@ public class WebpageReader implements Webpage {
 				url = hostUrl + url;
 			}
 			if (url.charAt(0) == 'h') {
-				System.out.println(url);
+//				System.out.println(url);
 				urls.add(url);
 			}
 
@@ -99,7 +99,7 @@ public class WebpageReader implements Webpage {
 
 			String mailAddress = line.substring(at.length() + atIndex, endIndex);
 
-			System.out.println(mailAddress);
+//			System.out.println(mailAddress);
 			emails.add(mailAddress);
 			
 		} // end line if statement
