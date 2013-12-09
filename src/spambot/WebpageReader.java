@@ -6,12 +6,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Set;
 
 public class WebpageReader implements Webpage {
 
+	private Set<String> urls;
+
 	public WebpageReader(String url) {
+		urls = new HashSet<String>();
 		UrlReader(url);
+		
 
 	}
 
@@ -24,8 +29,7 @@ public class WebpageReader implements Webpage {
 
 	@Override
 	public Set<String> getLinks() {
-		// TODO Auto-generated method stub
-		return null;
+		return urls;
 	}
 
 	@Override
@@ -54,28 +58,32 @@ public class WebpageReader implements Webpage {
 	}
 
 	private void webLink(String line, String hostUrl) {
+		
+//		System.out.println(line);
 
 		String aTag = "<a href=\"";
 		String aTagend = "\"";
-		
+
 		if(line.contains(aTag)) {
 			int aTagIndex = line.indexOf(aTag);
 			int aTagIndexEnd = line.indexOf(aTagend, aTagIndex + aTag.length() );
-			
+
 			String url = line.substring(aTagIndex + aTag.length() , aTagIndexEnd );
-			
+
 			if(url.charAt(0) == '/') {
 				url = hostUrl + url;
 			}
-			if (url.charAt(0) == 'h')
-			System.out.println(url);
-			
-			
-			 
+			if (url.charAt(0) == 'h') {
+				System.out.println(url);
+				urls.add(url);
+			}
+
+
 		}
 		
-		
-	
+
+
+
 	}
 
 }
