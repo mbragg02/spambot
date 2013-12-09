@@ -49,9 +49,6 @@ public class WebpageReader implements Webpage {
 			String inputLine;
 			while ((inputLine = in.readLine()) != null)
 				link(inputLine, url);
-			
-
-				
 			in.close();
 
 		} catch (MalformedURLException e) {
@@ -63,8 +60,6 @@ public class WebpageReader implements Webpage {
 
 	private void link(String line, String hostUrl) {
 		String inputLine = line;
-//		System.out.println(line);
-//		String line = 
 		String aTag = "<a href=\"";
 		String aTagend = "\"";
 
@@ -78,7 +73,6 @@ public class WebpageReader implements Webpage {
 				url = hostUrl + url;
 			}
 			if (url.charAt(0) == 'h') {
-//				System.out.println(url);
 				urls.add(url);
 			}
 
@@ -91,7 +85,6 @@ public class WebpageReader implements Webpage {
 		String line = inputLine;
 		String at = "href=\"mailto:";
 		String quote = "\"";
-//		System.out.println(line);
 		
 		if(line.contains(at)) {
 			int atIndex = line.indexOf(at);
@@ -99,7 +92,6 @@ public class WebpageReader implements Webpage {
 
 			String mailAddress = line.substring(at.length() + atIndex, endIndex);
 
-//			System.out.println(mailAddress);
 			emails.add(mailAddress);
 			
 		} // end line if statement
